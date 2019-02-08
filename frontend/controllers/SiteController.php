@@ -1,7 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\User;
 use Yii;
+use yii\base\ErrorException;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -73,6 +75,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionTest()
+    {
+        return $this->render('test');
     }
 
     /**

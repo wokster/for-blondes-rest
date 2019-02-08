@@ -9,6 +9,10 @@
 namespace frontend\modules\v2;
 
 
+use common\models\User;
+use yii\filters\AccessControl;
+use yii\filters\auth\HttpBasicAuth;
+
 class Module extends \yii\base\Module
 {
 	/**
@@ -22,7 +26,24 @@ class Module extends \yii\base\Module
 	public function init()
 	{
 		parent::init();
+		\Yii::$app->user->enableSession = false;
+	}
 
-		// custom initialization code goes here
+	public function behaviors()
+	{
+		$behaviors = parent::behaviors();
+		$behaviors['authenticator'] = [
+			'class' => HttpBasicAuth::class
+		];
+		$behaviors['access'] = [
+			'class' => AccessControl::class,
+			'rules' => [
+				[
+					'allow' => true,
+					'roles' => ['@'],
+				],
+			],
+		];
+		return $behaviors;
 	}
 }

@@ -31,8 +31,7 @@ return [
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            'name' => 'front_s',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -53,12 +52,12 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['order','v1/p' => 'v1/product'],
+                    'controller' => ['order','v1/product' => 'v1/product'],
                     'pluralize' => false,
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['p' => 'product'],
+                    'controller' => ['v2/p'=>'v2/product'],
                     'pluralize' => false,
                 ],
             ],
